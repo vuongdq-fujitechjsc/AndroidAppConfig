@@ -1,0 +1,91 @@
+version: 2.1
+
+parameters:
+  task: 
+    type: enum
+    enum: ["build", "deploy-st", "deplop-product"]
+    default: "build"
+
+references:
+
+  ## Cache
+  
+
+  ## Keys
+  # Android Store Key JKS
+  export_android_key: &export_android_key
+    run:
+      name: Export Android Store Key JKS
+      command: echo 'export ANDROID_STORE_KEY_JKS="$ANDROID_STORE_KEY_JKS"' >> $BASH_ENV
+  decode_android_key: &decode_android_key
+    run:
+      name: Decode Android Store Key JKS
+      command: echo $ANDROID_STORE_KEY_JKS | base64 -di >  ${HOME}/key/android-store-key.jks
+
+  # Google Cloud Service Key
+  export_google_cloud_key: &export_google_cloud_key
+    run:
+      name: Export Google Cloud Service Key 
+      command: echo 'export PLAY_STORE_CREDENTIAL="$PLAY_STORE_CREDENTIAL"' >> $BASH_ENV
+  decode_google_cloud_key: &decode_google_cloud_key
+    run:
+      name: Decode Google Cloud Service Key
+      command: echo $PLAY_STORE_CREDENTIAL | base64 -di > ${HOME}/key/play-store-credential.json
+
+jobs:
+  ## Build & Unit test
+  build:
+    docker:
+      - image: cimg/android:2022.09.2-browsers
+    steps:
+      - checkout
+      - run:
+          name: "Build"
+          command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
+
+  ## Deploy ST
+  deploy-st:
+    docker:
+      - image: cimg/android:2022.09.2-browsers
+    steps:
+      - checkout
+      - *export_android_key
+      - *decode_android_key
+      - *export_google_cloud_key
+      - *decode_google_cloud_key
+      - run:
+          name: "Install"
+          command: "scripts/installDependencies.sh"
+      - run:
+          name: "Generate AAB and upload to Google Store"
+          command: "bundle exec fastlane deplop build_flavor:'product' build_type: 'release'"
+
+  ## Deploy Product
+
+
+workflows:
+  # Workflow: build for any PR 
+  build:
+    when: 
+      and:
+          - equal: [ "build", << pipeline.parameters.task >> ]
+    jobs:
+      - build
+      
+      
+  # Workflow: deploy to testflight of ST environment  
+  deploy-st:
+    when: 
+     and:
+        - equal: [ "deploy-st", << pipeline.parameters.task >> ]
+    jobs:
+      - deploy-st
+
+  # Workflow: deploy to testflight of Product environment
+  deploy-product:
+    when: 
+     and:
+        - equal: [ "deploy-product", << pipeline.parameters.task >> ]
+    jobs:
+      - deploy-product
+  
