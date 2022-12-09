@@ -35,9 +35,9 @@ vendor/bundle
 .bundle
 .gradle
 
-# Key folder
-!keys/
-keys/*
+# Key
+android-store-key.jks
+play-store-credential.json
 
 # fastlane
 #
