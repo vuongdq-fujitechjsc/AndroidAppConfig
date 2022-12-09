@@ -12,4 +12,4 @@ jobs:
         with:
           GHA_Meta: build
         env:
-          ANDROID_CCI_TOKEN: ${{ secrets.ANDROID_CCI_TOKEN }}
+          Android_CCI_Token: ${{ secrets.ANDROID_CCI_TOKEN }}

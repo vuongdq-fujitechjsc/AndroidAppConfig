@@ -16,4 +16,4 @@ jobs:
         with:
           GHA_Meta: deploy-product
         env:
-          ANDROID_CCI_TOKEN: ${{ secrets.ANDROID_CCI_TOKEN }}
+          Android_CCI_Token: ${{ secrets.ANDROID_CCI_TOKEN }}
