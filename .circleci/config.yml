@@ -70,7 +70,21 @@ jobs:
           command: "bundle exec fastlane deplop build_flavor:'product' build_type: 'release'"
 
   ## Deploy Product
-
+  deploy-product:
+    docker:
+      - image: cimg/android:2022.09.2-browsers
+    steps:
+      - checkout
+      - *export_android_key
+      - *decode_android_key
+      - *export_google_cloud_key
+      - *decode_google_cloud_key
+      - run:
+          name: "Install"
+          command: "scripts/installDependencies.sh"
+      - run:
+          name: "Generate AAB and upload to Google Store"
+          command: "bundle exec fastlane deplop build_flavor:'product' build_type: 'release'"
 
 workflows:
   # Workflow: build for any PR 
