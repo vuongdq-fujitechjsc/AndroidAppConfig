@@ -1,6 +1,15 @@
 version: 2.1
 
 parameters:
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Event:
+    type: string
+    default: ""
   GHA_Meta: 
     type: enum
     enum: ["build", "deploy-st", "deplop-product"]
