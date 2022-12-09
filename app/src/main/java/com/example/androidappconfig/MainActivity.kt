@@ -9,7 +9,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import com.example.androidappconfig.databinding.ActivityMainBinding
+import com.meobeo.androidappconfig.R
+import com.meobeo.androidappconfig.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

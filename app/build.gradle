@@ -4,23 +4,50 @@ plugins {
 }
 
 android {
-    namespace 'com.example.androidappconfig'
+    namespace 'com.meobeo.androidappconfig'
     compileSdk 32
+    flavorDimensions "default"
 
     defaultConfig {
-        applicationId "com.example.androidappconfig"
+        applicationId "com.meobeo.androidappconfig"
         minSdk 30
         targetSdk 32
-        versionCode 1
+        versionCode 3
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        debug {
+//            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+//            buildConfigField("String", "API_KEY", "\"bcc94b1a7fe4d2ac8a21513d1f62fbb7\"")
+        }
+        release {
+//            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+//            buildConfigField("String", "API_KEY", "\"bcc94b1a7fe4d2ac8a21513d1f62fbb7\"")
+            signingConfig signingConfigs.release
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        st {
+            applicationId "com.meobeo.androidappconfig"
+            buildConfigField("String", "APP_MODE", "\"St\"")
+        }
+        product {
+            applicationId "com.meobeo.androidappconfig"
+            buildConfigField("String", "APP_MODE", "\"Product\"")
         }
     }
     compileOptions {
