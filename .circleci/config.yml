@@ -1,7 +1,7 @@
 version: 2.1
 
 parameters:
-  task: 
+  GHA_Meta: 
     type: enum
     enum: ["build", "deploy-st", "deploy-product"]
     default: "build"
@@ -68,7 +68,7 @@ workflows:
   build:
     when: 
       and:
-          - equal: [ "build", << pipeline.parameters.task >> ]
+          - equal: [ "build", << pipeline.parameters.GHA_Meta >> ]
     jobs:
       - build
       
@@ -77,7 +77,7 @@ workflows:
   deploy-st:
     when: 
      and:
-        - equal: [ "deploy-st", << pipeline.parameters.task >> ]
+        - equal: [ "deploy-st", << pipeline.parameters.GHA_Meta >> ]
     jobs:
       - deploy-st
 
@@ -85,7 +85,7 @@ workflows:
   deploy-product:
     when: 
      and:
-        - equal: [ "deploy-product", << pipeline.parameters.task >> ]
+        - equal: [ "deploy-product", << pipeline.parameters.GHA_Meta >> ]
     jobs:
       - deploy-product
   
