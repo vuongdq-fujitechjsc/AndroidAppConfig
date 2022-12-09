@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   task: 
     type: enum
-    enum: ["build", "deploy-st", "deplop-product"]
+    enum: ["build", "deploy-st", "deploy-product"]
     default: "build"
 
 references:
