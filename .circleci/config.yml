@@ -51,6 +51,8 @@ jobs:
       - run:
           name: "Install"
           command: "scripts/installDependencies.sh"
+      - *export_android_key
+      - *decode_android_key
       - run:
           name: "Build"
           command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
