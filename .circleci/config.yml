@@ -49,6 +49,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Force Bundler Version
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler; gem install bundler:1.17.2;
+      - run:
           name: "Build"
           command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
 
@@ -70,21 +76,7 @@ jobs:
           command: "bundle exec fastlane deplop build_flavor:'product' build_type: 'release'"
 
   ## Deploy Product
-  deploy-product:
-    docker:
-      - image: cimg/android:2022.09.2-browsers
-    steps:
-      - checkout
-      - *export_android_key
-      - *decode_android_key
-      - *export_google_cloud_key
-      - *decode_google_cloud_key
-      - run:
-          name: "Install"
-          command: "scripts/installDependencies.sh"
-      - run:
-          name: "Generate AAB and upload to Google Store"
-          command: "bundle exec fastlane deplop build_flavor:'product' build_type: 'release'"
+
 
 workflows:
   # Workflow: build for any PR 
