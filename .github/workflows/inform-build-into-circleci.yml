@@ -10,6 +10,6 @@ jobs:
       - name: CircleCI Trigger on Pull Request
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
         with:
-          task: build
+          GHA_Meta: build
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
