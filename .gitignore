@@ -22,9 +22,32 @@
 *.zip
 *.tar.gz
 *.rar
+*.apk
+*.aab
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+## User settings
+xcuserdata/
+vendor/bundle
+.bundle
+.gradle
+
+# Key folder
+key/
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo.
+# Instead, use fastlane to re-generate the screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
 
 # End of https://www.toptal.com/developers/gitignore/api/kotlin

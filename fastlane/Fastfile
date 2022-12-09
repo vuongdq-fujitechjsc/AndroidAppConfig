@@ -1,0 +1,53 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Run build and unit test"
+  lane :build_and_test do |options|
+    gradle(
+      task: "assemble",
+      flavor: options[:build_flavor],
+      build_type: options[:build_type]
+    )
+    gradle(
+      task: "test",
+      flavor: options[:build_flavor],
+      build_type: options[:build_type]
+    )
+  end
+
+  desc "Submit a new Beta build to the Google Play"
+  lane :deploy do |options|
+    gradle(task: "clean")
+    gradle(
+      task: "assemble",
+      flavor: options[:build_flavor],
+      build_type: options[:build_type]
+    )
+    gradle(
+      task: "bundle",
+      flavor: options[:build_flavor],
+      build_type: options[:build_type]
+    )
+    upload_to_play_store(
+      track: "internal",
+      aab: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      skip_upload_apk: true,
+      release_status: "draft"
+    )
+  end
+end

@@ -1,0 +1,2 @@
+json_key_file("./key/play-store-credential.json")
+package_name("com.meobeo.androidappconfig")
