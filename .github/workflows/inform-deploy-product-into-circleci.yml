@@ -1,0 +1,19 @@
+name: CircleCI Deplop Product
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [master]
+
+jobs:
+  build:
+    # Only when PR is closed and merged is true → That is, it starts only when merged
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: CircleCI trigger deploy product on pull request
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
+        with:
+          task: deploy-product
+        env:
+          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

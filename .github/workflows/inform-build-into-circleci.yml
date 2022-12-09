@@ -1,0 +1,15 @@
+name: CircleCI Build
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CircleCI Trigger on Pull Request
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
+        with:
+          task: build
+        env:
+          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
