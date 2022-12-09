@@ -14,6 +14,6 @@ jobs:
       - name: CircleCI trigger deploy product on pull request
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
         with:
-          task: deploy-product
+          GHA_Meta: deploy-product
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
