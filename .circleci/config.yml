@@ -61,7 +61,7 @@ jobs:
           command: "scripts/installDependencies.sh"
       - run:
           name: "Generate AAB and upload to Google Store"
-          command: "bundle exec fastlane deploy build_flavor:'product' build_type: 'release'"
+          command: "bundle exec fastlane deploy build_flavor:'product' build_type:'release'"
 
   ## Deploy Product
   deploy-product:
@@ -76,7 +76,7 @@ jobs:
           command: "scripts/installDependencies.sh"
       - run:
           name: "Generate AAB and upload to Google Store"
-          command: "bundle exec fastlane deploy build_flavor:'product' build_type: 'release'"
+          command: "bundle exec fastlane deploy build_flavor:'product' build_type:'release'"
 
 workflows:
   # Workflow: build for any PR 
