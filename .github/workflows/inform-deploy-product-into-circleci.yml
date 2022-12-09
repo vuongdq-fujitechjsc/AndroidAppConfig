@@ -1,4 +1,4 @@
-name: CircleCI Deplop Product
+name: Inform Deplop Product into CircleCI
 
 on:
   pull_request:

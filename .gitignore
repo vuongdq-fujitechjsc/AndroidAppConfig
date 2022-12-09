@@ -36,7 +36,8 @@ vendor/bundle
 .gradle
 
 # Key folder
-keys/
+!keys/
+keys/*
 
 # fastlane
 #

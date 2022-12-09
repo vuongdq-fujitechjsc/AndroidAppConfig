@@ -22,24 +22,16 @@ references:
 
   ## Keys
   # Android Store Key JKS
-  export_android_key: &export_android_key
-    run:
-      name: Export Android Store Key JKS
-      command: echo 'export ANDROID_STORE_KEY_JKS="$ANDROID_STORE_KEY_JKS"' >> $BASH_ENV
   decode_android_key: &decode_android_key
     run:
       name: Decode Android Store Key JKS
-      command: echo $ANDROID_STORE_KEY_JKS | base64 -di >  keys/android-store-key.jks
+      command: "echo $ANDROID_STORE_KEY_JKS | base64 --decode > keys/android-store-key.jks"
 
   # Google Cloud Service Key
-  export_google_cloud_key: &export_google_cloud_key
-    run:
-      name: Export Google Cloud Service Key
-      command: echo 'export PLAY_STORE_CREDENTIAL="$PLAY_STORE_CREDENTIAL"' >> $BASH_ENV
   decode_google_cloud_key: &decode_google_cloud_key
     run:
       name: Decode Google Cloud Service Key
-      command: echo $PLAY_STORE_CREDENTIAL | base64 -di > keys/play-store-credential.json
+      command: "echo $PLAY_STORE_CREDENTIAL | base64 --decode > keys/play-store-credential.json"
 
 jobs:
   ## Build & Unit test
@@ -51,7 +43,6 @@ jobs:
       - run:
           name: "Install"
           command: "scripts/installDependencies.sh"
-      - *export_android_key
       - *decode_android_key
       - run:
           name: "Build"
@@ -63,9 +54,7 @@ jobs:
       - image: cimg/android:2022.09.2-browsers
     steps:
       - checkout
-      - *export_android_key
       - *decode_android_key
-      - *export_google_cloud_key
       - *decode_google_cloud_key
       - run:
           name: "Install"
@@ -80,9 +69,7 @@ jobs:
       - image: cimg/android:2022.09.2-browsers
     steps:
       - checkout
-      - *export_android_key
       - *decode_android_key
-      - *export_google_cloud_key
       - *decode_google_cloud_key
       - run:
           name: "Install"
