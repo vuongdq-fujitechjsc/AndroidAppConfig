@@ -29,7 +29,7 @@ references:
   decode_android_key: &decode_android_key
     run:
       name: Decode Android Store Key JKS
-      command: echo $ANDROID_STORE_KEY_JKS | base64 -di >  ${HOME}/key/android-store-key.jks
+      command: echo $ANDROID_STORE_KEY_JKS | base64 -di >  keys/android-store-key.jks
 
   # Google Cloud Service Key
   export_google_cloud_key: &export_google_cloud_key
@@ -39,7 +39,7 @@ references:
   decode_google_cloud_key: &decode_google_cloud_key
     run:
       name: Decode Google Cloud Service Key
-      command: echo $PLAY_STORE_CREDENTIAL | base64 -di > ${HOME}/key/play-store-credential.json
+      command: echo $PLAY_STORE_CREDENTIAL | base64 -di > keys/play-store-credential.json
 
 jobs:
   ## Build & Unit test

@@ -15,22 +15,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## Android
 
-### android build
-
-```sh
-[bundle exec] fastlane android build
-```
-
-Run build assemble
-
-### android unit_test
-
-```sh
-[bundle exec] fastlane android unit_test
-```
-
-Run unit tests
-
 ### android build_and_test
 
 ```sh
