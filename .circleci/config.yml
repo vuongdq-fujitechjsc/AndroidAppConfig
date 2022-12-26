@@ -49,10 +49,15 @@ jobs:
   #         command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
     docker:
       - image: cimg/android:2022.09.2-browsers
+    working_directory: /tmp
     steps:
       - checkout
       - *decode_android_key
       # - *decode_google_cloud_key
+      - run:
+          name: Creating Dummy Artifacts
+          command: |
+            mkdir /tmp/artifacts;
       - run:
           name: "Install"
           command: "scripts/installDependencies.sh"
@@ -80,7 +85,8 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'staging' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: /app/build/outputs/bundle/productRelease/app-dev-release.aab
+          path: /app/build/outputs/bundle/productRelease
+          destination: app-dev-release.aab
 
   ## Deploy Product
   deploy-product:
