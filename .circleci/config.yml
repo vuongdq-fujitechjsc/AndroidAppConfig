@@ -47,7 +47,6 @@ jobs:
   #     - run:
   #         name: "Build"
   #         command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
-    working_directory: /tmp
     docker:
       - image: cimg/android:2022.09.2-browsers
     steps:
