@@ -61,7 +61,9 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'st' build_type:'release'"
       - run:
           name: "Zip file AAB"
-          command: "zip app/build/outputs/bundle/stRelease/app-st-release.aab.zip app/build/outputs/bundle/stRelease/app-st-release.aab"
+          command: |
+                cd app/build/outputs/bundle/stRelease;
+                zip app-st-release.aab.zip app-st-release.aab
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: app/build/outputs/bundle/stRelease/app-st-release.aab.zip
