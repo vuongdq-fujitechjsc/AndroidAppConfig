@@ -58,7 +58,7 @@ jobs:
           command: "scripts/installDependencies.sh"
       - run:
           name: "Generate AAB and upload to Google Store"
-          command: "bundle exec fastlane deploy build_flavor:'staging' build_type:'release'"
+          command: "bundle exec fastlane deploy build_flavor:'st' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: app/build/outputs/bundle/productRelease/app-dev-release.aab
