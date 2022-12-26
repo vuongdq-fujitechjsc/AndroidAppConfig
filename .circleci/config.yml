@@ -80,7 +80,7 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'staging' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: app/build/outputs/bundle/productRelease/app-dev-release.aab
+          path: /app/build/outputs/bundle/productRelease/app-dev-release.aab
 
   ## Deploy Product
   deploy-product:
@@ -98,7 +98,7 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'product' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: app/build/outputs/bundle/productRelease/app-product-release.aab
+          path: /app/build/outputs/bundle/productRelease/app-product-release.aab
 
 workflows:
   # Workflow: build for any PR 
