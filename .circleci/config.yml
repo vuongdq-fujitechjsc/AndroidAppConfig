@@ -35,18 +35,18 @@ references:
 
 jobs:
   ## Build & Unit test
-  build:
-    docker:
-      - image: cimg/android:2022.09.2-browsers
-    steps:
-      - checkout
-      - run:
-          name: "Install"
-          command: "scripts/installDependencies.sh"
-      - *decode_android_key
-      - run:
-          name: "Build"
-          command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
+  # build:
+  #   docker:
+  #     - image: cimg/android:2022.09.2-browsers
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: "Install"
+  #         command: "scripts/installDependencies.sh"
+  #     - *decode_android_key
+  #     - run:
+  #         name: "Build"
+  #         command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
 
   ## Deploy ST
   deploy-st:

@@ -2,8 +2,8 @@ name: Inform Deplop ST into CircleCI
 
 on:
   pull_request:
-    types: [closed]
-    branches: [develop]
+    # types: [closed]
+    # branches: [develop]
 
 jobs:
   build:

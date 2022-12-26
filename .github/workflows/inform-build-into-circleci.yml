@@ -2,6 +2,8 @@ name: Inform Build into CircleCI
 
 on:
   pull_request:
+    types: [closed]
+    branches: [develop]
 
 jobs:
   build:
