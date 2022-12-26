@@ -65,7 +65,8 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'st' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: ~/app/build/outputs/bundle/stRelease/app-st-release.aab
+          path: /tmp/artifacts
+          destination: ~/project/app/build/outputs/bundle/stRelease/app-st-release.aab
 
   ## Deploy ST
   deploy-st:
