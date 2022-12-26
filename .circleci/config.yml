@@ -67,7 +67,7 @@ jobs:
             ls;
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: /app/build/outputs/bundle/stRelease/app-st-release.aab
+          path: app/build/outputs/bundle/stRelease/app-st-release.aab
           destination: AAB-file
 
   ## Deploy ST
