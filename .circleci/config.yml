@@ -54,10 +54,6 @@ jobs:
       - *decode_android_key
       # - *decode_google_cloud_key
       - run:
-          name: Creating Dummy Artifacts
-          command: |
-            mkdir /tmp/artifacts;
-      - run:
           name: "Install"
           command: "scripts/installDependencies.sh"
       - run:
@@ -65,12 +61,10 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'st' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: /tmp/artifacts
-          destination: ~/project/app/build/outputs/bundle/stRelease/app-st-release.aab
+          path: /app/build/outputs/bundle/stRelease/app-st-release.aab
 
   ## Deploy ST
   deploy-st:
-    working_directory: /tmp
     docker:
       - image: cimg/android:2022.09.2-browsers
     steps:
