@@ -43,11 +43,11 @@ platform :android do
       flavor: options[:build_flavor],
       build_type: options[:build_type]
     )
-    upload_to_play_store(
-      track: "internal",
-      aab: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
-      skip_upload_apk: true,
-      release_status: "draft"
-    )
+    # upload_to_play_store(
+    #   track: "internal",
+    #   aab: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+    #   skip_upload_apk: true,
+    #   release_status: "draft"
+    # )
   end
 end

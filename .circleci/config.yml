@@ -63,17 +63,9 @@ jobs:
       - run:
           name: "Generate AAB and upload to Google Store"
           command: "bundle exec fastlane deploy build_flavor:'staging' build_type:'release'"
-      - run:
-          name: Creating Dummy Artifacts
-          command: |
-            echo "my artifact file" > /tmp/art-1;
-            mkdir /tmp/artifacts;
-            echo "my artifact files in a dir" > /tmp/artifacts/art-2;
       - store_artifacts:
-          path: /tmp/art-1
-          destination: artifact-file
-      - store_artifacts:
-          path: /tmp/artifacts
+          name: "Store AAB file to Artifact"
+          path: app/build/outputs/bundle/productRelease/app-dev-release.aab
 
   ## Deploy Product
   deploy-product:
@@ -89,6 +81,9 @@ jobs:
       - run:
           name: "Generate AAB and upload to Google Store"
           command: "bundle exec fastlane deploy build_flavor:'product' build_type:'release'"
+      - store_artifacts:
+          name: "Store AAB file to Artifact"
+          path: app/build/outputs/bundle/productRelease/app-product-release.aab
 
 workflows:
   # Workflow: build for any PR 
