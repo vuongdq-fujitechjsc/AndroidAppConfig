@@ -28,12 +28,30 @@ references:
       command: "echo $ANDROID_STORE_KEY_JKS | base64 --decode > android-store-key.jks"
 
   # Google Cloud Service Key
-  decode_google_cloud_key: &decode_google_cloud_key
-    run:
-      name: Decode Google Cloud Service Key
-      command: "echo $PLAY_STORE_CREDENTIAL | base64 --decode > play-store-credential.json"
+  # decode_google_cloud_key: &decode_google_cloud_key
+  #   run:
+  #     name: Decode Google Cloud Service Key
+  #     command: "echo $PLAY_STORE_CREDENTIAL | base64 --decode > play-store-credential.json"
 
 jobs:
+  ## Store artifact
+  artifact:
+    docker:
+      - image: cimg/android:2022.09.2-browsers
+    working_directory: /tmp
+    steps:
+      - run:
+          name: Creating Dummy Artifacts
+          command: |
+            echo "my artifact file" > /tmp/art-1;
+            mkdir /tmp/artifacts;
+            echo "my artifact files in a dir" > /tmp/artifacts/art-2;
+      - store_artifacts:
+          path: /tmp/art-1
+          destination: artifact-file
+      - store_artifacts:
+          path: /tmp/artifacts
+
   ## Build & Unit test
   build:
     docker:
@@ -55,7 +73,7 @@ jobs:
     steps:
       - checkout
       - *decode_android_key
-      - *decode_google_cloud_key
+      # - *decode_google_cloud_key
       - run:
           name: "Install"
           command: "scripts/installDependencies.sh"
@@ -70,7 +88,7 @@ jobs:
     steps:
       - checkout
       - *decode_android_key
-      - *decode_google_cloud_key
+      # - *decode_google_cloud_key
       - run:
           name: "Install"
           command: "scripts/installDependencies.sh"
