@@ -62,6 +62,7 @@ jobs:
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: app/build/outputs/bundle/stRelease
+          destination: ST-AAB-Files
 
   ## Deploy ST
   deploy-st:
@@ -80,6 +81,7 @@ jobs:
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: /app/build/outputs/bundle/productRelease/app-product-release.aab
+          destination: ST-AAB-Files
 
   ## Deploy Product
   deploy-product:
@@ -98,6 +100,7 @@ jobs:
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: /app/build/outputs/bundle/productRelease/app-product-release.aab
+          destination: Product-AAB-Files
 
 workflows:
   # Workflow: build for any PR 
