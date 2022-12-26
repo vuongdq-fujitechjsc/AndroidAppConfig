@@ -49,7 +49,7 @@ jobs:
   #         command: "bundle exec fastlane build_and_test build_flavor:'product' build_type:'release'"
     docker:
       - image: cimg/android:2022.09.2-browsers
-    working_directory: /tmp
+    working_directory: /app/build/outputs/bundle
     steps:
       - checkout
       - *decode_android_key
@@ -66,7 +66,7 @@ jobs:
           command: "bundle exec fastlane deploy build_flavor:'st' build_type:'release'"
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: /app/build/outputs/bundle/stRelease/app-st-release.aab
+          path: stRelease/app-st-release.aab
 
   ## Deploy ST
   deploy-st:
