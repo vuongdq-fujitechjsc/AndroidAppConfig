@@ -63,6 +63,8 @@ jobs:
           name: Creating Dummy Artifacts
           command: |
             ls;
+            cd app/build/outputs/bundle/stRelease;
+            ls;
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: /app/build/outputs/bundle/stRelease/app-st-release.aab
