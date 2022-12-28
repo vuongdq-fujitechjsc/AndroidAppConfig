@@ -16,4 +16,4 @@ jobs:
         with:
           GHA_Meta: deploy-st
         env:
-          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
+          CCI_TOKEN: ${{ secrets.PJ_TOKEN }}

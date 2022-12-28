@@ -82,10 +82,15 @@ jobs:
           command: "scripts/installDependencies.sh"
       - run:
           name: "Generate AAB and upload to Google Store"
-          command: "bundle exec fastlane deploy build_flavor:'staging' build_type:'release'"
+          command: "bundle exec fastlane deploy build_flavor:'st' build_type:'release'"
+      - run:
+          name: "Zip file AAB"
+          command: |
+                cd app/build/outputs/bundle/stRelease;
+                zip app-st-release.aab.zip app-st-release.aab
       - store_artifacts:
           name: "Store AAB file to Artifact"
-          path: /app/build/outputs/bundle/productRelease/app-product-release.aab
+          path: app/build/outputs/bundle/stRelease/app-st-release.aab.zip
           destination: ST-AAB-Files
 
   ## Deploy Product
@@ -102,6 +107,11 @@ jobs:
       - run:
           name: "Generate AAB and upload to Google Store"
           command: "bundle exec fastlane deploy build_flavor:'product' build_type:'release'"
+      - run:
+          name: "Zip file AAB"
+          command: |
+                cd app/build/outputs/bundle/productRelease;
+                zip app-st-release.aab.zip app-st-release.aab
       - store_artifacts:
           name: "Store AAB file to Artifact"
           path: /app/build/outputs/bundle/productRelease/app-product-release.aab
