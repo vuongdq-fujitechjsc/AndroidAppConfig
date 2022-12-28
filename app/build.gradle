@@ -12,7 +12,7 @@ android {
         applicationId "com.meobeo.androidappconfig"
         minSdk 30
         targetSdk 32
-        versionCode 1
+        versionCode 3
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
